@@ -1,0 +1,21 @@
+body {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+}
+
+.post-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, roboto, segoe ui, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.post-title a {
+    color: #4788f2;
+}
+
+.post-content {
+    font-size: 16px;
+}
+
+.logo__text, .header__right {
+    font-family: 'Fira Code', Courier, monospace;
+}
