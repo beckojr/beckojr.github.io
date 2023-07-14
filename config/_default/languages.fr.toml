@@ -1,0 +1,36 @@
+languageName = "Français"
+contentDir = "content/fr"
+languageCode = "fr-FR"
+[params]
+title = "Becko Jr."
+subtitle = "Blog personnel"
+owner = "Becko Jr."
+keywords = "Cloud, DevOps"
+copyright = ""
+menuMore = "Plus"
+readMore = "Lire plus"
+readOtherPosts = "Autres publications"
+newerPosts = "Publications récentes"
+olderPosts = "Anciennes publications"
+missingContentMessage = "Page inexistante..."
+missingBackButtonLabel = "Retour à la page d'accueil"
+minuteReadingTime = "min de lecture"
+words = "mots"
+
+[params.logo]
+logoText = "Becko Jr."
+logoHomeLink = "/fr"
+
+[menu]
+[[menu.main]]
+identifier = "about"
+name = "A propos"
+url = "/fr/about"
+[[menu.main]]
+identifier = "projects"
+name = "Projets"
+url = "/fr/projects"
+[[menu.main]]
+identifier = "showcase"
+name = "Showcase"
+url = "/fr/showcase"

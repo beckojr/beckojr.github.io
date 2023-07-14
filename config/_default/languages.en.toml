@@ -1,0 +1,37 @@
+
+languageName = "English"
+languageCode = "en-US"
+contentDir = "content/en"
+[params]
+title = "Becko Jr."
+subtitle = "A simple, retro theme for Hugo"
+owner = ""
+keywords = ""
+copyright = ""
+menuMore = "Show more"
+readMore = "Read more"
+readOtherPosts = "Read other posts"
+newerPosts = "Newer posts"
+olderPosts = "Older posts"
+missingContentMessage = "Page not found..."
+missingBackButtonLabel = "Back to home page"
+minuteReadingTime = "min read"
+words = "words"
+
+[params.logo]
+logoText = "Becko Jr."
+logoHomeLink = "/en"
+
+[menu]
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/en/about"
+[[menu.main]]
+identifier = "projects"
+name = "Projects"
+url = "/en/projects"
+[[menu.main]]
+identifier = "showcase"
+name = "Showcase"
+url = "/en/showcase"
