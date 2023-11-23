@@ -1,13 +1,13 @@
 baseURL = 'https://beckojr.github.io'
-title = 'Thinking out loud'
+title = 'Plumbin it easy'
 
-defaultContentLanguage = 'en'
+defaultContentLanguage = 'fr'
 defaultContentLanguageInSubdir = true
 
 [params]
 # dir name of your main content (default is `content/posts`).
 # the list of set content will show up on your index page (baseurl).
-contentTypeName = "posts"
+contentTypeName = "about"
 
 # ["orange", "blue", "red", "green", "pink"]
 themeColor = "blue"
@@ -40,7 +40,7 @@ showLastUpdated = false
 # updatedDatePrefix = "Updated"
 
 # set all headings to their default size (depending on browser settings)
-# oneHeadingSize = true # default
+oneHeadingSize = false # default
 
 # whether to show a page's estimated reading time
 # readingTime = false # default
