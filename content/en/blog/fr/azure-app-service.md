@@ -1,6 +1,6 @@
 +++
-title = "Hello World"
-date = "2023-07-14T03:06:07+02:00"
+title = "Azure App Service"
+date = "2023-11-23T17:34:44+01:00"
 author = ""
 authorTwitter = "" #do not include @
 cover = ""

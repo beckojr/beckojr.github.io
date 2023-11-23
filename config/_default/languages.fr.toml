@@ -8,7 +8,7 @@ owner = "Becko Jr."
 keywords = "Cloud, DevOps"
 copyright = ""
 menuMore = "Plus"
-readMore = "Lire plus"
+readMore = "Continuer la lecture"
 readOtherPosts = "Autres publications"
 newerPosts = "Publications récentes"
 olderPosts = "Anciennes publications"
@@ -23,14 +23,14 @@ logoHomeLink = "/fr"
 
 [menu]
 [[menu.main]]
-identifier = "about"
-name = "A propos"
-url = "/fr/about"
+identifier = "blog"
+name = "Blog"
+url = "/fr/blog"
+[[menu.main]]
+identifier = "notes"
+name = "Notes"
+url = "/fr/notes"
 [[menu.main]]
 identifier = "projects"
 name = "Projets"
-url = "/fr/projects"
-[[menu.main]]
-identifier = "showcase"
-name = "Showcase"
-url = "/fr/showcase"
+url = "/fr/projets"
