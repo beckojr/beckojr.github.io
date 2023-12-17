@@ -1,5 +1,5 @@
 +++
-title = "Déployer Son Application Web Sur Azure Avec Azure App Service | Partie 1: Présentation d'Azure App Service"
+title = "Déployer Son Application Web sur Azure Avec App Service | Partie 1: Les bases d'App Service"
 date = "2023-11-23T21:26:07+01:00"
 author = "Becko Junior Camara"
 authorTwitter = "" #do not include @
@@ -13,68 +13,139 @@ hideComments = false
 color = "" #color from the theme settings
 +++
 
-## Introduction
+Nous avons été contacté par un client qui a fait le choix d'Azure pour déployer son application de recommendation de restaurants: **FoodAdvisor**. Disposant d'une équipe technique restreinte et voulant se concentrer sur le développement de nouvelles fonctionnalités, nous avons conseillé à la startup le service **Azure App Service**.
 
-Qui veut déployer une application web aujourd'hui a l'embarra du choix tant les solutions de déploiement d'applications web foisonnent. Rien que sur AWS par exemple, il existe un peu plus de 17 façons différentes de déployer un conteneur. Les fournisseurs services cloud rivalisent d'innovations pour faciliter et moins pénible le déploiement d'applications web.
+L'application FoodAdvisor est basée sur le CMS Node.js [Strapi](https://strapi.io/). Elle dispose d'une interface web et stocke ses données dans une base de données PostgreSQL.
 
-Face à cette panoplie de solutions de déploiement d'applications web, on peut se poser la question du meilleur service à choisir pour son application. La réponse à cette question (comme à beaucoup d'autres en informatique) va dépendre de votre cas d'utilisation et de votre contexte.
+Dans cet article, nous allons procéder étape par étape au déploiement de l'application FoodAdvisor. Ce faisant, nous allons introduire les concepts d'Azure App Service qui nous permettront d'atteindre notre objectif.
 
-Pour néanmoins aider dans la réflexion, cette série d'article en 3 parties se propose de présenter une solution de déploiement d'application web dans le cloud: **Azure App Service**. Dans cette première partie, je vais introduire le service Azure App Service.
+Pour suivre et exécuter les instructions de cet article, vous aurez besoin des éléments suivants:
 
-Cet article commencera par une présentation du service Azure App Service. Je présenterai ensuite les différents concepts pour construire notre mind-map, puis je parlerai de certaines fonctionnalités intéressantes d'Azure App Service. Pour finir, il sera question de la tarification et enfin la conclusion.
+- Un compte Azure. Vous pouvez en créer un si vous n'avez pas de compte Azure,
+- Une souscription dans la quelle vous pouvez créer des ressources,
+- L'interface en ligne de commande Azure CLI installé sur votre poste de travail.
 
-## C'est quoi Azure App Service ?
+# De quoi Azure App Service est le nom?
 
-Dans le cloud (dont Azure), on distingue trois modèles de services qui sont:
+App Service est de la famille des plateformes en tant que service (_PaaS - Platform as a Service_). Un PaaS est un modèle de service du cloud qui permet au développeur de déployer son application web sans se soucier de la gestion de l'infrastructure sous-jacente.
 
-- Infrastructure en tant que Service (IaaS - _Infrastructure as a Service_)
-- Plateforme en tant que Service (PaaS - _Platform as a Service_)
-- Logiciel en tant que Service (SaaS - _Software as a Service_)
+Comme défini dans le [modèle responsabilité partagée](https://learn.microsoft.com/fr-fr/azure/security/fundamentals/shared-responsibility) du cloud, avec un PaaS, le fournisseur de service cloud fournit la puissance de calcul nécessaire au fonctionnement de notre application web, ainsi que des interfaces (Web, API, CLI) de configuration. Le développeur a le choix du langage de programmation, du framework et autres configurations nécessaires au fonctionnement de leurs applications. Le fournisseur de service cloud de son côté a la responsabilité d'assurer la sécurité des machines virtuelles via des mise à jour régulières du système d'exploitation, du framework choisit par le développeurs, de la haute disponibilité du service.
 
-Selon le modèle de service choisit, l'effort de gestion de nos ressources (qu'elles soient IaaS, PaaS ou SaaS) va beaucoup différer. C'est ce qui constitue la base du [modèle de partage de responsabilité](https://learn.microsoft.com/fr-fr/azure/security/fundamentals/shared-responsibility) dans le cloud.
+App Service est un service régional qui fournit une ferme de machines virtuelles pour déployer des applications web (des applications accessibles via HTTP). Les niveaux tarifaires (les plans) d'App Service définissent les fonctionnalité disponibles et les tailles des machines virtuelles. Les fonctionnalités suivantes sont disponibles:
 
-[INSERT SHARED RESPONSIBILITY DIAGRAM]
+- Authentification (sans toucher au code l'application)
+- Le déploiement sur plusieurs zones de disponiblités
+- Nom de domaine personnalisé
+- Intégration dans un VNET
+- Un équilibreur de charge intégré
+- La mise à l'échelle automatique
+- Intégration avec Azure Monitor (pour la surveillance et les alertes)
 
-Azure App Service appartient à la famille des Plateformes en tant que Service (PaaS). Avec ce modèle de service, le fournisseur de service cloud (CSP - _Cloud Service Provider_) a pour responsabilité de gérer, sécuriser, toute l'infrastructure sous-jacente. Le CSP met à disposition du développeur une puissance de calcul préconfiguré avec le langage de programmation cible du développeur avec la version souhaitée.
+**Note**
 
-Azure App Service concrètement est une ferme d'un ou plusieurs machines virtuelles que fournit Azure et au dessus des quelles Azure nous propose un ensemble de fonctionnalités qui améliore l'expérience de développeur dans le déploiement et l'exploitation de son application web. Azure App Service permet au développeur de se concentrer sur la création de valeur et laisse à Azure le soin de la gestion, de la disponibilité et de la mise à l'échelle automatique de l’infrastructure sous-jacente.
+_Pour faire simple, j'utiliserai l'interface en ligne de commande pour créer les ressources Azure et déployer les applications web. Idéalement, il faudrait utiliser un outil d'infrastructure en tant que code comme Azure Resource Manager ou Terraform._
 
-## Quels sont les éléments constitutifs d'Azure App Service ?
+# App Service Plan pour commencer
 
-Pour bien prendre en main Azure App Service, il est important de comprendre ses éléments constitutifs et comment ceux-ci s'intègrent pour former le service.
+Un plan App Service définit les caractéristiques des ressources de calcul nécessaires au fonctionnement de notre application web. Il définit les éléments suivants:
 
-### App Service Plan
+- Le système d'exploitation (Windows ou Linux)
+- Le nombre d'instances et la taille des machines virtuelles (petite, moyenne, grande)
+- Le niveau tarifaire (Gratuit, Partagé(seulement Windows), Basic, Standard, PremiumV2, PremiumV3, Isolé, IsoléV2)
 
-- What is app service plan?
-- The structure of the shared environment
-- Integration with VNET
-- Available service tiers
+Le plan choisi définit les fonctionnalités disponibles. Selon le plan choisi, notre application web est déployée dans un environnement:
 
-### App Service Environment
+- Partagé (Gratuit et Partagé): Les machines virtuelles et l'environnement réseau sont partagés avec d'autres clients Azure.
+- Dédiée (Basic, Standard, PremiumV2, PremiumV3): Les machines virtuelles sont dédiées, mais l'environnement réseau est partagé avec d'autres clients Azure.
+- Isolé (Isolé, IsoléV2): ce niveau tarifaire nécessite un environnement App Service (_App Service Environment - ASE_) dans lequel le plan sera créé. L'environnement App Service est utilise un réseau virtuel dédié dans le quel des machines virtuelles dédiées sont déployées.
 
-- What is an App Service environment
-- How it differs from App Service Plan
+## Choix du plan App Service pour FoodAdvisor
 
-### Web App
+Pour le fonctionnement de l'application FoodAdvisor en production nous avons besoin des fonctionnalités suivantes:
 
-- What is a web app in App Service context
-- Deployment modes and number of instances
-- Deployment slots
+- La haute disponibilité et la résilience
+- Un environnement de qualification
+- Un nom de domaine personnalisé
+- Un CDN pour servir le contenu de notre interface web
 
-## Fonctionnalités
+Au regard des exigences, nous avons le choix d'un plan à partir du niveau Premium. C'est à partir du niveau Premium que nous avons le support du déploiement sur plusieurs zones de disponibilité.
 
-- List of available functionalities out-of-the-box
-- Describe 5-6 main functionalities
+Pour notre application FoodAdvisor, nous créerons un plan P0v3 (PremiumV3), avec Linux comme système d'exploitation, sur 3 zones de disponibilités.
 
-## Conclusion
+**Note**
 
-- Brief summary
-- Introduce part 2 of the series: Deployment steps of a web on App Service
+Il est recommandé d'avoir un plan par environnement (prod, nonprod, etc.). Pour notre client, un plan basic suffit pour les environnements hors production.
 
-## Annexe
+### Création du plan App Service
 
-### Tarification
+Avant de créer notre plan, il faut d'abord s'authentifier via la CLI Azure: `az login`. La page d'authentification d'Azure s'ouvrira dans votre navigateur par défaut.
 
-- Table with the pricing of each service tier
+```
+az appservice plan create \
+--resource-group rg-foodadvisor-frc-prod \
+--name plan-foodadvisor-frc-prod \
+--sku P0V3 --is-linux --zone-redundant
+```
 
-## Références
+Cette commande crée notre plan App Service comme le montre l'image ci-dessous
+
+[INSERT AZURE PORTAL SNIP]
+
+# Création des applications web
+
+Avec la création de notre plan App Service, les ressources nécessaires au fonctionnement de nos applications web sont disponibles. Pour rappel, l'application FoodAdvisor est composé d'une interface web, d'un CMS, et une base de données PostgreSQL.
+
+[INSERT APPLICATION TECHNICAL FLOW]
+
+```
+# Création de l'application web 'front' (l'interface web)
+
+az webapp create \
+--name foodadvisor-api --plan plan-foodadvisor-frc-prod \
+--resource-group rg-foodadvisor-frc-prod \
+--runtime NODE:16-lts \
+--assign-identity <> --role <> --scope <> \
+--https-only # force la redirection en HTTPS
+
+# Création de l'application web 'api' (le CMS)
+
+az webapp create \
+--name foodadvisor-api --plan plan-foodadvisor-frc-prod \
+--resource-group rg-foodadvisor-frc-prod \
+--runtime NODE:16-lts \
+--assign-identity <> --role <> --scope <> \
+--https-only # force la redirection en HTTPS
+```
+
+## Deployments slots
+
+- Présentation
+- Utilité
+
+## Modes de déploiements
+
+- Kudu: Webdeploy, zip, REST endpoint
+- FTP
+
+## Configuration du web app
+
+- Utilisation de app settings pour les variables d'environnement
+- Non utilisation de la connection string
+- Intégration avec App Config et KeyVault pour le secret de la base
+
+## Interconexion à la BD
+
+- Rappelle du context multi-tenant de notre plan
+- Règles réseaux à prendre en compte
+
+# Day-2 operation
+
+## Monitoring
+
+- Différents niveaux de monitoring
+- Diagnostic settings: Sorties possibles, metrics dispo
+
+## Alerting
+
+- Infra alerts
+- Alertes disponibilité
