@@ -11,6 +11,7 @@ showFullContent = false
 readingTime = false
 hideComments = false
 color = "" #color from the theme settings
+draft = true
 +++
 
 # Loud greeting to the world
