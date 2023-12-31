@@ -11,6 +11,7 @@ showFullContent = false
 readingTime = false
 hideComments = false
 color = "" #color from the theme settings
+draft = true
 +++
 
 Nous avons été contacté par un client qui a fait le choix d'Azure pour déployer son application de recommendation de restaurants: **FoodAdvisor**. Disposant d'une équipe technique restreinte et voulant se concentrer sur le développement de nouvelles fonctionnalités, nous avons conseillé à la startup le service **Azure App Service**.
