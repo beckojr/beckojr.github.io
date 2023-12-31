@@ -1,7 +1,7 @@
 # baseURL = 'https://beckojr.github.io'
 title = 'Plumbin it easy'
 
-defaultContentLanguage = 'fr'
+defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 
 [params]
