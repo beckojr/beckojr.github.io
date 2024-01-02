@@ -111,13 +111,34 @@ The following command sets `ENV` and `REGION` environment variables
 `az webapp config appsettings set -g rg-blog-playground --name gs-node-app --settings ENV=DEV REGION=FRC`
 {{< figure src="/images/app-settings.png" alt="App Service plan in Azure Portal" position="center" caption="Figure 4: App Service plan in the Azure Portal" >}}
 
-### Deployment methods
+### How do you make your application's source code or binary available in your web app ?
 
-## How do you integrate App Service with other Azure Service ?
+Under the hoods, App Service uses a content share (`/home/site/wwwroot` for Linux or `D:\home\site\wwwroot` for Windows) to make your application content on the virtual machine or the web app container. The application is restarted whenever a file in the content share is updated.
 
-# How do you operate it ?
+App Service provides the following methods to update the content share:
 
-- Monitoring tools integration
-- Alerting
+- GitHub, BitBucket, and Azure DevOps continuous deployment integration
+- Local git, App Service creates a remote git server that triggers a new deploy on a push on the default branch
+- ZIP deployment, an archive made of your application's content
+- WAR deployment, a WAR file of a Java application
+
+SCM (GitHub, BitBucket, Azure DevOps) integration requires to setup a service principal ou a deployment profile for your CI/CD platform to have the required permissions to deploy your web app.
+
+Under the hoods, the deployment methods use one of the following mechanisms:
+
+- Kudu, a developer productivity tool that enables continuous deployment. It runs as a separate process on Windows and another container on Linux.
+- FTP(S), each web app has two FTP endpoints (read-only, read-write). Uploads to the `read-write` endpoint is a way to deploy your source code.
+
+A new deployment triggers an app restart to pickup the latest changes. In a production environment, this means a downtime for users. To avoid this downtime, App Service has `deployment slots` to the rescue.
+
+A deployment slot is a staging environment with its own configuration and domain name. A deployment slot can be used to validate changes prior to going live in production. Deployment slot swapping enables a seamless blue-green deployment. App Service allows traffic splitting between two slots. This help validate changes on the staging slot before swapping it with the production slot.
+
+## How does App Service integrates with other Azure services ?
+
+Your application may need to access resources available on another Azure services. The way App Service interacts with other Azure services depends on the kind of authentication mechanism the other Azure service supports.
+
+For an application that needs to access a PostgreSQL database deployed on an Azure PotgreSQL instance, the application needs a user/password credential to connect to the target database. In a case like this, you must set your credentials either as a database connection string or an [App Setting](#how-do-you-create-and-configure-a-web-app-). It is a best practice to store your database secrets (and any other secret e.g. certificates, api keys, ...) in Azure Key Vault.
+
+Azure Key Vault is the kind of Azure Service that doesn't support user/password as an authentication mechanism. For your application to access secrets stored in Azure Key Vault, they must have the required access permissions. To set the required permission to your web app, you need to create a `Managed Service Identity (MSI)`. You assign a role with the required access to the managed identity attached to your web app.
 
 # When should you use App Service ?
