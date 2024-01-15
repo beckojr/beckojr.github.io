@@ -33,4 +33,4 @@ url = "/fr/notes"
 [[menu.main]]
 identifier = "projects"
 name = "Projets"
-url = "/fr/projets"
+url = "/fr/projects"
