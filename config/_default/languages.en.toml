@@ -24,14 +24,14 @@ logoHomeLink = "/en"
 
 [menu]
 [[menu.main]]
-identifier = "about"
-name = "About"
-url = "/en/about"
+identifier = "blog"
+name = "Blog"
+url = "/en/blog"
+[[menu.main]]
+identifier = "notes"
+name = "Notes"
+url = "/en/notes"
 [[menu.main]]
 identifier = "projects"
 name = "Projects"
 url = "/en/projects"
-[[menu.main]]
-identifier = "showcase"
-name = "Showcase"
-url = "/en/showcase"
