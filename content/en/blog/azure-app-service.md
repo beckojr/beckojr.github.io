@@ -1,6 +1,6 @@
 +++
 title = "Getting Started with Azure App Service"
-date = "2023-11-23T21:26:07+01:00"
+date = "2024-01-18T06:20:54+01:00"
 author = "Becko Junior Camara"
 authorTwitter = "beckojrgong" #do not include @
 cover = ""
