@@ -1,5 +1,5 @@
 languageName = "Français"
-contentDir = "content/fr"
+contentDir = "content/fr/"
 languageCode = "fr-FR"
 [params]
 title = "Becko Jr."
