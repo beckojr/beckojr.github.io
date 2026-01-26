@@ -1,0 +1,32 @@
++++
+title = 'DevOps, Automation, & Infrastructure as Code'
+date = 2026-01-13T15:41:46+01:00
+lastmod = 2026-01-13T15:41:46+01:00
+draft = false
+author = 'beckojr'
+description = 'DevOps automation and Infrastructure as Code services'
+summary = 'Streamline your development and deployment processes'
+tags = ['devops', 'automation', 'iac', 'ci-cd']
+categories = ['Services']
+showDate = false
+showAuthor = false
+showReadingTime = false
+showEdit = false
+showSummary = true
+showPagination = false
+invertPagination = false
+showToC = false
+openToC = false
+showTaxonomies = false
+showWordCount = false
+showComments = false
+showHeadingAnchors = false
+showBreadcrumbs = false
+showZenMode = false
+showLikes = false
+showViews = false
+showRelated = false
+relatedInFooter = false
+featured = false
+weight = 1
++++

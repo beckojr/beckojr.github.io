@@ -1,0 +1,32 @@
++++
+title = 'Platform Engineering'
+date = 2026-01-13T15:41:46+01:00
+lastmod = 2026-01-13T15:41:46+01:00
+draft = false
+author = 'beckojr'
+description = 'Platform engineering and developer experience services'
+summary = 'Build robust platforms for your development teams'
+tags = ['platform', 'engineering', 'developer-experience', 'infrastructure']
+categories = ['Services']
+showDate = false
+showAuthor = false
+showReadingTime = false
+showEdit = false
+showSummary = true
+showPagination = false
+invertPagination = false
+showToC = false
+openToC = false
+showTaxonomies = false
+showWordCount = false
+showComments = false
+showHeadingAnchors = false
+showBreadcrumbs = false
+showZenMode = false
+showLikes = false
+showViews = false
+showRelated = false
+relatedInFooter = false
+featured = false
+weight = 2
++++

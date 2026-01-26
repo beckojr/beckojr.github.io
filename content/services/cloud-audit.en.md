@@ -1,0 +1,32 @@
++++
+title = 'Cloud Audit'
+date = 2026-01-13T15:41:46+01:00
+lastmod = 2026-01-13T15:41:46+01:00
+draft = true
+author = 'beckojr'
+description = 'Comprehensive cloud infrastructure audit services'
+summary = 'Evaluate and optimize your cloud infrastructure'
+tags = ['cloud', 'audit', 'security', 'optimization']
+categories = ['Services']
+showDate = false
+showAuthor = false
+showReadingTime = false
+showEdit = false
+showSummary = true
+showPagination = false
+invertPagination = false
+showToC = false
+openToC = false
+showTaxonomies = false
+showWordCount = false
+showComments = false
+showHeadingAnchors = false
+showBreadcrumbs = false
+showZenMode = false
+showLikes = false
+showViews = false
+showRelated = false
+relatedInFooter = false
+featured = false
+weight = 4
++++
