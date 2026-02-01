@@ -1,0 +1,18 @@
+/* assets/css/custom.css */
+
+/* Force le fond en Bleu Nuit #050a30 sans transparence */
+body,
+html,
+.bg-neutral-900 {
+    background-color: #050a30 !important;
+}
+
+/* Force la couleur du texte par défaut */
+body {
+    color: #e3e8ec;
+}
+
+/* Force les liens en Orange #fb8500 */
+a:hover {
+    color: #fb8500;
+}

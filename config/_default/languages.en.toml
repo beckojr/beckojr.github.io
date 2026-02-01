@@ -2,14 +2,15 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 1
-title = "beckojr"
+# title = "beckojr"
+description = "Personal website of Becko Junior CAMARA"
 
 [params]
 displayName = "English"
 isoCode = "en"
 rtl = false
 dateFormat = "2 January 2006"
-# logo = "img/logo.png"
+logo = "img/bc2.png"
 # secondaryLogo = "img/secondary-logo.png"
 description = "Personal website"
 # copyright = "Copy, _right?_ :thinking_face:"
@@ -17,10 +18,10 @@ description = "Personal website"
 [params.author]
 name = "Becko Junior CAMARA"
 email = "camara.becko@gmail.com"
-image = "img/blowfish_logo.png"
+image = "img/bc2.png"
 imageQuality = 96
-headline = "Cloud Engineer - AWS & Azure"
-bio = "Cloud Engineer - DevOps & Infrastructure Automation | Platform Engineering | Cloud Solutions Architecture"
+headline = "Senior Cloud Engineer - AWS & Azure"
+bio = "I help organizations build robust, self-service cloud platforms that reduce deployment time from days to minutes."
 links = [
   { email = "mailto:camara.becko@gmail.com" },
   #     { link = "https://link-to-some-website.com/" },

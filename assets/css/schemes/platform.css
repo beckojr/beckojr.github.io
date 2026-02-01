@@ -1,0 +1,62 @@
+/* assets/css/schemes/becko.css */
+
+:root {
+    /* -------------------------------------------------------------
+     1. PRIMARY PALETTE: ORANGE (#fb8500)
+     Utilisé pour les liens, boutons, hover, et éléments actifs
+     ------------------------------------------------------------- */
+    --color-primary-50: 255, 248, 240;
+    --color-primary-100: 255, 235, 215;
+    --color-primary-200: 255, 215, 175;
+    --color-primary-300: 255, 185, 125;
+    --color-primary-400: 253, 160, 75;
+
+    /* TA COULEUR EXACTE #fb8500 (RGB: 251, 133, 0) */
+    --color-primary-500: 251, 133, 0;
+
+    /* Nuances plus sombres pour le survol (Hover) */
+    --color-primary-600: 205, 108, 0;
+    --color-primary-700: 160, 85, 0;
+    --color-primary-800: 115, 60, 0;
+    --color-primary-900: 70, 35, 0;
+
+
+    /* -------------------------------------------------------------
+     2. SECONDARY PALETTE: CYAN (Accent optionnel)
+     Juste pour compléter, tu ne l'utiliseras pas beaucoup
+     ------------------------------------------------------------- */
+    --color-secondary-50: 240, 253, 255;
+    --color-secondary-500: 6, 182, 212;
+    --color-secondary-900: 22, 78, 99;
+
+
+    /* -------------------------------------------------------------
+     3. NEUTRAL PALETTE: BLEU NUIT & GRIS CLAIR
+     C'est ici qu'on définit le fond et le texte
+     ------------------------------------------------------------- */
+
+    /* --- LE TEXTE (Light Shades) --- */
+    --color-neutral-50: 255, 255, 255;
+    /* Blanc pur pour titres très importants */
+    --color-neutral-100: 245, 247, 250;
+
+    /* TA COULEUR DE TEXTE EXACTE #e3e8ec (RGB: 227, 232, 236) */
+    --color-neutral-200: 227, 232, 236;
+
+    /* Texte secondaire (commentaires, dates) un peu plus sombre */
+    --color-neutral-300: 180, 190, 210;
+    --color-neutral-400: 148, 163, 184;
+    --color-neutral-500: 100, 116, 139;
+
+    /* --- LE FOND (Dark Shades) --- */
+    --color-neutral-600: 71, 85, 105;
+    --color-neutral-700: 30, 40, 70;
+
+    /* Fond des cartes (Card Background) */
+    /* On le met très proche du fond, juste un poil plus clair pour la séparation */
+    /* #080f3d => RGB: 8, 15, 61 */
+    --color-neutral-800: 8, 15, 61;
+
+    /* TA COULEUR DE FOND EXACTE #050a30 (RGB: 5, 10, 48) */
+    --color-neutral-900: 5, 10, 48;
+}
